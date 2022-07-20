@@ -10,19 +10,35 @@ class Equipment extends Model
 {
     use HasFactory,SoftDeletes;
 
+    /**
+     * @var string
+     */
     protected $table='equipments';
+    /**
+     * @var string[]
+     */
     protected $fillable=[
         'equipment_type_id',
         'SN',
         'note'
     ];
-
+    /**
+     * @var string[]
+     */
     protected $dates=['deleted_at'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function type(){
         return $this->belongsTo(EquipmentType::class,'equipment_type_id');
     }
 
+    /**
+     * @param int $size
+     * @param $search
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     protected function paginate(int $size,$search){
         return static::with('type')
             ->where('SN','like','%'.$search.'%')
@@ -30,10 +46,18 @@ class Equipment extends Model
             ->paginate($size);
     }
 
+    /**
+     * @param $SN
+     * @return mixed
+     */
     protected function checkUnique($SN){
         return static::where('SN',$SN)->first();
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     protected function store($data){
         return static::create([
             'equipment_type_id'=>$data->equipment_type_id,
@@ -41,6 +65,12 @@ class Equipment extends Model
             'note'=>$data->note
         ]);
     }
+
+    /**
+     * @param $data
+     * @param $id
+     * @return mixed
+     */
     protected function edit($data,$id){
         return static::where('id',$id)->update([
             'equipment_type_id'=>$data->equipment_type_id,

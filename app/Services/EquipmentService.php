@@ -7,6 +7,11 @@ use App\Models\EquipmentType;
 
 class EquipmentService
 {
+    /**
+     * @param $mask
+     * @param $SN
+     * @return bool
+     */
     private function checkedMaskSN($mask,$SN){
         $maskArr = str_split($mask);
         $pattern = '/';
@@ -34,6 +39,10 @@ class EquipmentService
         return false;
     }
 
+    /**
+     * @param $data
+     * @return array
+     */
     public function store($data){
         $response=[];
         foreach ($data as $key=>$equipment){
@@ -64,6 +73,11 @@ class EquipmentService
         return $response;
     }
 
+    /**
+     * @param $data
+     * @param $id
+     * @return array
+     */
     public function update($data,$id){
         if(!Equipment::checkUnique($data->SN)){
             if($this->checkedMaskSN(EquipmentType::mask($data->equipment_type_id),$data->SN)){

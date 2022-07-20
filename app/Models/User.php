@@ -41,6 +41,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     protected function checkName($name){
         return static::where('name',$name)->first();
     }

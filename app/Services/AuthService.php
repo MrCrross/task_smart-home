@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
+    /**
+     * @param $data
+     * @return array
+     */
     public function login($data){
         $user = User::checkName($data->name);
         if(!$user || !Hash::check($data->password,$user->password)){
