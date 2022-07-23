@@ -18,97 +18,97 @@ class EquipmentSeeder extends Seeder
         $types = [
             [
                 'name'=>'TP-Link TL-WR74',
-                'maskSN'=>'XXAAAAAXAA'
+                'mask_sn'=>'XXAAAAAXAA'
             ],
             [
                 'name'=>'D-Link DIR-300',
-                'maskSN'=>'NXXAAXZXaa'
+                'mask_sn'=>'NXXAAXZXaa'
             ],
             [
                 'name'=>'D-Link DIR-300 E',
-                'maskSN'=>'NAAAAXZXXX'
+                'mask_sn'=>'NAAAAXZXXX'
             ],
         ];
 
         $equipments = [
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGGGG0GG',
+                'sn'=>'00GGGGG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGGGG0GF',
+                'sn'=>'00GGGGG0GF',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGGGG0FG',
+                'sn'=>'00GGGGG0FG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGGGG1GG',
+                'sn'=>'00GGGGG1GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGGGF0GG',
+                'sn'=>'00GGGGF0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGGFG0GG',
+                'sn'=>'00GGGFG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GGFGG0GG',
+                'sn'=>'00GGFGG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00GFGGG0GG',
+                'sn'=>'00GFGGG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'00FGGGG0GG',
+                'sn'=>'00FGGGG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'01GGGGG0GG',
+                'sn'=>'01GGGGG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'10GGGGG0GG',
+                'sn'=>'10GGGGG0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'10GGGGG0GF',
+                'sn'=>'10GGGGG0GF',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'10GGGGG0FG',
+                'sn'=>'10GGGGG0FG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'10GGGGG1GG',
+                'sn'=>'10GGGGG1GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'10GGGGF0GG',
+                'sn'=>'10GGGGF0GG',
                 'note'=>'jngkjdfngjkds'
             ],
             [
                 'equipment_type_id'=>1,
-                'SN'=>'10GGGFF0GG',
+                'sn'=>'10GGGFF0GG',
                 'note'=>'jngkjdfngjkds'
             ],
 

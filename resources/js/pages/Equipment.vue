@@ -5,8 +5,8 @@
         </h4>
         <div>
             <ul class="pagination d-flex justify-content-center align-items-center my-2">
-                <li class="page-item" v-for="page in equipments.last_page" :key="page">
-                    <a class="cursor page-link active" v-if="page===equipments.current_page"
+                <li class="page-item" v-for="page in equipments.meta.last_page" :key="page">
+                    <a class="cursor page-link active" v-if="page===equipments.meta.current_page"
                        @click="newData(page)">{{ page }}</a>
                     <a class="cursor page-link" v-else @click="newData(page)">{{ page }}</a>
                 </li>
@@ -29,9 +29,9 @@
             </thead>
             <tbody>
             <tr v-for="(equipment, index) in equipments.data" :key="equipment.id">
-                <td>{{ ((equipments.current_page - 1) * equipments.per_page) + (++index) }}</td>
+                <td>{{ ((equipments.meta.current_page - 1) * equipments.meta.per_page) + (++index) }}</td>
                 <td>{{ equipment.type.name }}</td>
-                <td>{{ equipment.SN }}</td>
+                <td>{{ equipment.sn }}</td>
                 <td>{{ equipment.note }}</td>
                 <td>
                     <div class="btn-group" role="group">
@@ -46,8 +46,8 @@
         </table>
         <div>
             <ul class="pagination d-flex justify-content-center align-items-center my-2">
-                <li class="page-item" v-for="page in equipments.last_page" :key="page">
-                    <a class="cursor page-link active" v-if="page===equipments.current_page"
+                <li class="page-item" v-for="page in equipments.meta.last_page" :key="page">
+                    <a class="cursor page-link active" v-if="page===equipments.meta.current_page"
                        @click="newData(page)">{{ page }}</a>
                     <a class="cursor page-link" v-else @click="newData(page)">{{ page }}</a>
                 </li>
@@ -61,7 +61,10 @@ export default {
     name: "Equipment",
     data() {
         return {
-            equipments: {},
+            equipments: {
+                meta:{},
+                data:{}
+            },
             search: '',
         }
     },

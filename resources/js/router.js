@@ -3,6 +3,7 @@ import {createWebHistory, createRouter} from "vue-router"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Equipment from "./pages/Equipment"
+import EquipmentType from "./pages/EquipmentType"
 import CreateEquipment from "./components/equiments/Create"
 import EditEquipment from "./components/equiments/Edit"
 
@@ -24,6 +25,14 @@ export const routes = [
             auth: true
         },
         component: Equipment
+    },
+    {
+        name: 'equipment_types',
+        path: '/equipment-type',
+        meta: {
+            auth: true
+        },
+        component: EquipmentType
     },
     {
         name: 'createEquipment',

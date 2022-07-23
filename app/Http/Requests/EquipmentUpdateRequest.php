@@ -25,7 +25,7 @@ class EquipmentUpdateRequest extends FormRequest
     {
         return [
             'equipment_type_id'=>'required|integer',
-            'SN'=>'required|string',
+            'sn'=>'required|string',
             'note'=>'required|string'
         ];
     }

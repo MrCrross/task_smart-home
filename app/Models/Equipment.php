@@ -19,7 +19,7 @@ class Equipment extends Model
      */
     protected $fillable=[
         'equipment_type_id',
-        'SN',
+        'sn',
         'note'
     ];
     /**
@@ -34,6 +34,9 @@ class Equipment extends Model
         return $this->belongsTo(EquipmentType::class,'equipment_type_id');
     }
 
+    protected function one(int $id){
+        return static::with('type')->find($id);
+    }
     /**
      * @param int $size
      * @param $search
@@ -41,17 +44,21 @@ class Equipment extends Model
      */
     protected function paginate(int $size,$search){
         return static::with('type')
-            ->where('SN','like','%'.$search.'%')
+            ->where('sn','like','%'.$search.'%')
             ->orWhere('note','like','%'.$search.'%')
             ->paginate($size);
     }
 
     /**
-     * @param $SN
+     * @param $sn
+     * @param int|null $id
      * @return mixed
      */
-    protected function checkUnique($SN){
-        return static::where('SN',$SN)->first();
+    protected function checkUnique($sn, int $id=null){
+        if($id){
+            return static::where('id','<>',$id)->where('sn',$sn)->first();
+        }
+        return static::where('sn',$sn)->first();
     }
 
     /**
@@ -61,7 +68,7 @@ class Equipment extends Model
     protected function store($data){
         return static::create([
             'equipment_type_id'=>$data->equipment_type_id,
-            'SN'=>$data->SN,
+            'sn'=>$data->sn,
             'note'=>$data->note
         ]);
     }
@@ -74,7 +81,7 @@ class Equipment extends Model
     protected function edit($data,$id){
         return static::where('id',$id)->update([
             'equipment_type_id'=>$data->equipment_type_id,
-            'SN'=>$data->SN,
+            'sn'=>$data->sn,
             'note'=>$data->note
         ]);
     }

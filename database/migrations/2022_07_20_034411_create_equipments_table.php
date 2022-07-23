@@ -16,7 +16,7 @@ class CreateEquipmentsTable extends Migration
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('equipment_type_id');
-            $table->string('SN',10)->unique();
+            $table->string('sn',10)->unique();
             $table->text('note');
             $table->timestamps();
             $table->softDeletes();

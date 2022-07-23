@@ -27,7 +27,7 @@ class EquipmentStoreRequest extends FormRequest
             'equipments'=>'required|array',
             'equipments.*'=>'required|array',
             'equipments.*.equipment_type_id'=>'required|integer',
-            'equipments.*.SN'=>'required|string|max:10',
+            'equipments.*.sn'=>'required|string|max:10',
             'equipments.*.note'=>'required|string',
         ];
     }

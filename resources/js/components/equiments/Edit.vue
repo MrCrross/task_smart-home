@@ -29,7 +29,7 @@ Z –символ из списка: “-“, “_”, “@”.'>
                                             <select id="equipment_type_id" v-model="equipment.equipment_type_id"
                                                     @change="changeMask"
                                                     class="form-select">
-                                                <option :value="type.id" :data-mask="type.maskSN" v-for="type in types"
+                                                <option :value="type.id" :data-mask="type.mask_sn" v-for="type in types"
                                                         :key="type.id">
                                                     {{ type.name }}
                                                 </option>
@@ -44,11 +44,11 @@ Z –символ из списка: “-“, “_”, “@”.'>
                                             {{equipment.error}}
                                         </div>
                                         <div class="form-group row my-1">
-                                            <label for="SN" class="col-md-4 col-form-label text-md-right">
+                                            <label for="sn" class="col-md-4 col-form-label text-md-right">
                                                 Серийный номер
                                             </label>
                                             <div class="col-md-8">
-                                                <input id="SN" type="text" class="form-control" :data-index="equipment.id" @input="checkMaskedSN" v-model="equipment.SN"
+                                                <input id="sn" type="text" class="form-control" :data-index="equipment.id" @input="checkMaskedSN" v-model="equipment.sn"
                                                        required>
                                             </div>
                                         </div>
@@ -98,15 +98,15 @@ export default {
         this.id = location.pathname.slice(location.pathname.lastIndexOf('/')+1)
         this.$axios.get('/api/equipment/'+this.id)
         .then(res=>{
-            this.equipment=res.data
-            this.equipment.mask=res.data.type.maskSN
+            this.equipment=res.data.data
+            this.equipment.mask=res.data.data.type.mask_sn
         })
         .catch(error=>{
             console.log(error)
         })
-        this.$axios.get('/api/equipment-type')
+        this.$axios.post('/api/equipment-type')
             .then(res => {
-                this.types = res.data
+                this.types = res.data.data
             })
             .catch(error => {
                 console.error(error)
@@ -168,9 +168,9 @@ export default {
             equipment.mask=mask
             equipment.error=''
             equipment.maskedSN=''
-            const SN = document.getElementById('SN')
-            SN.title = mask
-            SN.placeholder = mask
+            const sn = document.getElementById('sn')
+            sn.title = mask
+            sn.placeholder = mask
             equipment.pattern = this.patternAll(mask.split(''))
         },
         checkMaskedSN(e){
@@ -178,31 +178,31 @@ export default {
             const mask=equipment.mask.split('')
             equipment.maskedSN=''
             equipment.error=''
-            const SN = equipment.SN.split('')
+            const sn = equipment.sn.split('')
             mask.forEach((el,key) => {
-                if(key+1>equipment.SN.length){
+                if(key+1>equipment.sn.length){
                     return;
                 }
                 equipment.masked=true
-                if(!SN[key].match(this.patternOne(el))){
+                if(!sn[key].match(this.patternOne(el))){
                     equipment.maskedSN=`Маска: ${equipment.mask}. Неверный серийный номер. Ошибка в символе ${key+1}`;
                     equipment.masked=false
                     return
                 }
             })
-            if(equipment.SN.length>equipment.mask.length){
+            if(equipment.sn.length>equipment.mask.length){
                 equipment.maskedSN=`Маска: ${equipment.mask}.`;
                 equipment.error='Серийный номер заполнен неверно.'
                 return;
             }
             if(equipment.masked){
                 equipment.maskedSN=`Маска: ${equipment.mask}. Серийный номер заполняется верно.`;
-                if(equipment.SN.length===equipment.mask.length ){
-                    if(equipment.SN.match(equipment.pattern)){
+                if(equipment.sn.length===equipment.mask.length ){
+                    if(equipment.sn.match(equipment.pattern)){
                         equipment.maskedSN=`Серийный номер заполнен верно.`;
                         equipment.error=''
                     }
-                    if(!equipment.SN.match(equipment.pattern)){
+                    if(!equipment.sn.match(equipment.pattern)){
                         equipment.maskedSN=`Маска: ${equipment.mask}. Серийный номер заполнен неверно.`;
                         equipment.error=''
                     }
@@ -214,11 +214,11 @@ export default {
             e.preventDefault()
             this.$axios.put('/api/equipment/'+this.id,{
                 "equipment_type_id":this.equipment.equipment_type_id,
-                "SN":this.equipment.SN,
+                "sn":this.equipment.sn,
                 "note":this.equipment.note
             })
                 .then(res=>{
-                    const data = res.data
+                    const data = res.data.data
                     this.equipment.maskedSN=''
                     this.equipment.error=''
                     if(data.success){

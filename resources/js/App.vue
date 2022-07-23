@@ -1,11 +1,12 @@
 <template>
     <div class="container">
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="collapse navbar-collapse">
                 <!-- for logged-in user-->
                 <div class="navbar-nav" v-if="user">
                     <router-link to="/" class="nav-item nav-link">{{user.name}}</router-link>
                     <router-link to="/equipment" class="nav-item nav-link">Оборудования</router-link>
+                    <router-link to="/equipment-type" class="nav-item nav-link">Типы оборудования</router-link>
                     <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Выход</a>
                 </div>
                 <!-- for non-logged user-->

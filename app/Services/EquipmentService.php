@@ -9,10 +9,10 @@ class EquipmentService
 {
     /**
      * @param $mask
-     * @param $SN
+     * @param $sn
      * @return bool
      */
-    private function checkedMaskSN($mask,$SN){
+    private function checked_mask_sn($mask,$sn){
         $maskArr = str_split($mask);
         $pattern = '/';
         foreach ($maskArr as $item){
@@ -35,7 +35,7 @@ class EquipmentService
             }
         }
         $pattern.='/';
-        if(preg_match($pattern,$SN)) return true;
+        if(preg_match($pattern,$sn)) return true;
         return false;
     }
 
@@ -47,8 +47,8 @@ class EquipmentService
         $response=[];
         foreach ($data as $key=>$equipment){
             $eq = (object)$equipment;
-            if(!Equipment::checkUnique($eq->SN)){
-                if($this->checkedMaskSN(EquipmentType::mask($eq->equipment_type_id),$eq->SN)){
+            if(!Equipment::checkUnique($eq->sn)){
+                if($this->checked_mask_sn(EquipmentType::mask($eq->equipment_type_id),$eq->sn)){
                     Equipment::store($eq);
                     $response[]=[
                         'success'=>true,
@@ -79,8 +79,8 @@ class EquipmentService
      * @return array
      */
     public function update($data,$id){
-        if(!Equipment::checkUnique($data->SN)){
-            if($this->checkedMaskSN(EquipmentType::mask($data->equipment_type_id),$data->SN)){
+        if(!Equipment::checkUnique($data->sn,$id)){
+            if($this->checked_mask_sn(EquipmentType::mask($data->equipment_type_id),$data->sn)){
                 Equipment::edit($data,$id);
                 return [
                     'success'=>true,

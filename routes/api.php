@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::put('/equipment/{id}',[EquipmentController::class,'update']);
     Route::delete('/equipment/{id}',[EquipmentController::class,'destroy']);
     Route::get('/equipment-type',[EquipmentTypeController::class,'index']);
+    Route::post('/equipment-type',[EquipmentTypeController::class,'get']);
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
